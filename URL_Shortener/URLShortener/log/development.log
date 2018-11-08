@@ -231,3 +231,10 @@ Migrating to CreateVisits (20181107225404)
   [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT("visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3)[0m
   [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(DISTINCT "visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3)[0m
   [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(DISTINCT "visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3 AND created_at >= '2018-11-08 00:33:46.101980')[0m
+  [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" ORDER BY "shortened_urls"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT("visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(DISTINCT "users"."id") FROM "users" INNER JOIN "visits" ON "users"."id" = "visits"."user_id" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 3]]
+  [1m[36mShortenedUrl Load (0.6ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" ORDER BY "shortened_urls"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT("visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(DISTINCT "users"."id") FROM "users" INNER JOIN "visits" ON "users"."id" = "visits"."user_id" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 3]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(DISTINCT "visits"."user_id") FROM "visits" WHERE (shortened_url_id = 3 AND created_at >= '2018-11-08 00:41:07.544615')[0m

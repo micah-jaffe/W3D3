@@ -24,7 +24,7 @@ class ShortenedUrl < ApplicationRecord
     class_name: :Visit
 
   has_many :visitors,
-    Proc.new{ distinct }
+    Proc.new{ distinct },
     through: :visits,
     source: :user
 
@@ -54,7 +54,10 @@ class ShortenedUrl < ApplicationRecord
     # self.visitors.map { |v| v.user_id }.uniq.count
 
     # Initial Rails query
-    Visit.select(:user_id).where("shortened_url_id = #{self.id}").distinct.count
+    # Visit.select(:user_id).where("shortened_url_id = #{self.id}").distinct.count
+
+    # Using :visitors with {distinct} proc
+    self.visitors.count
   end
 
   def num_recent_uniques
