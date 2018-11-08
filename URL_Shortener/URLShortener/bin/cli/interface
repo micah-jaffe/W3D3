@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+#need to remove rb file extension before running
+
+
+def prompt_for_email
+  puts "Enter your email."
+  email = gets.chomp
+  User.find_by(email: email)
+end
+
+def prompt_create_or_fetch
+  puts "Would you like to shorten a URL (1) or decode a shortened URL (2)?"
+  selection = gets.chomp.to_i
+
+  if selection == 1
+    puts "What is your full URL?"
+    url = gets.chomp
+  else
+    puts "What is your short URL?"
+    url = gets.chomp
+  end
+
+  [selection, url]
+end
+
+def long_url_to_short_url(user, long_url)
+  ShortenedUrl.create_shortened_url(user, long_url)
+end
+
+def short_url_to_long_url(short_url)
+  short_url_object = ShortenedUrl.find_by(short_url: short_url)
+  short_url_object.long_url
+end
+
+def run
+  user = prompt_for_email
+  params = prompt_create_or_fetch
+
+  if params.first == 1
+    output = long_url_to_short_url(user, params.last)
+    p output.short_url
+  else
+    output = short_url_to_long_url(params.last)
+    p output
+  end
+end
+
+run
