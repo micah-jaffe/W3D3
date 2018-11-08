@@ -42,7 +42,7 @@ def run
     p output.short_url
   else
     output = short_url_to_long_url(params.last)
-    p output
+    Launchy.open(output)
   end
 end
 
